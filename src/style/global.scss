@@ -1,0 +1,30 @@
+body, html {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 ;
+  overflow-x: hidden;
+}
+body {
+  padding-bottom: 84px;
+}
+.showNone {
+  display: none;
+}
+.showBlock {
+  display: block;
+}
+#download {
+  position: fixed;
+  bottom: -.2rem;
+  img {
+    width: 100vw;
+    max-width: 640px;
+  }
+  span {
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    right: 4%;
+    top: 30%;
+  }
+}

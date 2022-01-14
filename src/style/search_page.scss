@@ -1,0 +1,96 @@
+#search_page {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(241, 240, 246);
+  color: rgba(85, 85, 85, .5);
+  header {
+    height: 4rem;
+    margin: 1rem;
+    #return {
+      width: 2.5rem;
+      height: 4rem;
+      background: url("../../assets/return.png") center no-repeat;
+      background-size: 1.1rem 2rem;
+      float: left;
+    }
+    p {
+      position: relative;
+      margin: 0 0 0 30px;
+      input {
+        width: 100%;
+        height: 4rem;
+        padding: 0;
+        color: #555;
+        font-size: 1.2rem;
+        text-indent: 1rem;
+        border: 1px solid #e5e4e7;
+        border-radius: 0.5rem;
+        outline: 0;
+      }
+    }
+  }
+  .cities_list {
+    margin: 0 10px;
+    p {
+      height: 3.1rem;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    ul {
+      padding: 0 0 2.8rem;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      li {
+        width: 30%;
+        height: 3.2rem;
+        border: 1px solid #e5e4e7;
+        border-radius: 6px;
+        list-style: none;
+        background-color: #fff;
+        margin: 1rem 0 0 3.5%;
+        a {
+          display: block;
+          padding: 0 10px;
+          text-align: center;/*水平居中*/
+          line-height: 3.2rem;
+          font-size: 1.2rem;
+          color: #555;
+        }
+      }
+      li:nth-child(3n+1) { /*选中每行第一个li标签*/
+        margin: 1rem 0 0 .5%;
+      }
+      .chosen_li {
+        border-color: #0ca2eb;
+      }
+    }
+  }
+  #record {
+    p {
+      display: inline-block;
+    }
+    #clearBtn {
+      float: right;
+    }
+  }
+  #cities_list {
+    margin: 0 10px;
+    padding: 0;
+    list-style: none;
+    li {
+      border-bottom: 1px solid #dcdbe1;
+      a {
+        color: #555;
+        font-size: 1.2rem;
+        line-height: 3.4rem;
+      }
+    }
+  }
+  #hot_cities {
+    margin-bottom: 64px;  /*页脚留白给下载页*/
+  }
+}
