@@ -1,4 +1,5 @@
 import {ajax} from "./ajax.js"; // 注意这里一定要写文件后缀！
+import weekAqi from '../mockdata/aqi.js';
 import {
     key,
     city,
@@ -22,6 +23,7 @@ import {
     temperEcharts,
     nowApiImg,
     dayTwo,
+    weekApi,
 } from './constant.js';
 
 const width = window.innerWidth;
@@ -102,11 +104,18 @@ export function setApi() {
             // console.log(data.now)
             if (category === "优") {
                 nowApiImg.setAttribute("class", "warn_1");// 改变图标背景颜色
-            }
-            if (category === "良") {
+                nowApiImg.innerHTML = `<img src="../../assets/info_box/aqi_1.png" alt="api_img">`
+            } else if (category === "良") {
                 nowApiImg.setAttribute("class", "warn_2");
+                nowApiImg.innerHTML = `<img src="../../assets/info_box/aqi_1.png" alt="api_img">`
+            } else {
+                nowApiImg.innerHTML = `<img src="../../assets/info_box/aqi_3.png" alt="api_img">`
+                if (category === "轻度污染") {
+                  nowApiImg.setAttribute("class", "warn_3");
+              } else if (category === "中度污染") {
+                  nowApiImg.setAttribute("class", "warn_4");
+              }
             }
-            nowApiImg.innerHTML = `<img src="../../assets/info_box/api_良.png" alt="api_img">`
             nowApi.innerHTML = `${aqi} ${category}`
         })
 }
@@ -192,13 +201,27 @@ export function setWeekWeather() {
     })
         .then(data => {
             const {daily} = data;
-            console.log(daily)
+            // console.log(daily)
+            /**
+             * @desc 根据等级返回对应class
+             * */
+            function judge(category) {
+                if (category === "优") {
+                    return "warn_1";
+                } else if (category === "良") {
+                    return "warn_2";
+                } else if (category === "轻度污染") {
+                    return "warn_3"
+                } else if (category === "中度污染") {
+                    return "warn_4";
+                }
+            }
             // 今明天气:
             dayTwo.innerHTML = `
                 <div>
                     <div>
                         <span>今天</span>
-                        <span>${daily[0].textDay}</span>
+                        <span class=${judge(weekAqi[0].category)}>${weekAqi[0].category}</span>
                         <span>${daily[0].tempMin} / ${daily[0].tempMax}°</span>
                     </div>
                     <div>
@@ -209,11 +232,11 @@ export function setWeekWeather() {
                 <div>
                     <div>
                         <span>明天</span>
-                        <span>${daily[1].textDay}</span>
+                        <span class=${judge(weekAqi[1].category)}>${weekAqi[1].category}</span>
                         <span>${daily[1].tempMin} / ${daily[1].tempMax}°</span>
                     </div>
                     <div>
-                        <span>${daily[0].textDay}</span>
+                        <span>${daily[1].textDay}</span>
                         <img src="../assets/weather/rain.png" alt="weather">
                     </div>
                 </div>`
@@ -269,6 +292,14 @@ export function setWeekWeather() {
             nightWeather.innerHTML = nightWeatherInner;
             windDir.innerHTML = windDirInner;
             windScale.innerHTML = windScaleInner;
+            // 七：空气质量
+            let weekAqiInner = "";
+            weekAqi.map(item => {
+                // console.log(item)
+                const { category } = item;
+                weekAqiInner += `<li class = ${judge(category)}>${item.category.slice(0, 2)}</li>`
+            })
+            weekApi.innerHTML = weekAqiInner;
             // 四：温度曲线
             const option = {
                 xAxis: {

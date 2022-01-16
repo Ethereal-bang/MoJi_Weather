@@ -13,7 +13,8 @@ export const nowApi = document.getElementsByClassName("api")[0];
 export const temperEcharts = document.getElementsByClassName("echarts")[0];
 // 今明天气
 export const dayTwo = document.getElementById("days");
-
+// 一周天气
+export  const weekApi = document.getElementsByClassName("api")[1];
 export const weatherEcharts = document.getElementsByClassName("echarts")[1];
 export const week = document.getElementsByClassName("week")[0];
 export const dayWeather = document.getElementsByClassName("weather")[1];  // 一周天气——日间

@@ -19,6 +19,12 @@ body {
 .warn_2 { /*良*/
   background-color: #d7af0e;
 }
+.warn_3 { /*轻度污染*/
+  background-color: #f39800;
+}
+.warn_4 { /*中度污染*/
+  background-color: #e2361a;
+}
 #download {
   position: fixed;
   bottom: -.2rem;
