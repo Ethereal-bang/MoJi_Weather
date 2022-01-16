@@ -7,11 +7,17 @@ body, html {
 body {
   padding-bottom: 84px;
 }
-.showNone {
-  display: none;
+//.showNone {
+//  display: none;
+//}
+//.showBlock {
+//  display: block;
+//}
+.warn_1 { /*空气质量等级_优*/
+  background-color: #8fc31f;
 }
-.showBlock {
-  display: block;
+.warn_2 { /*良*/
+  background-color: #d7af0e;
 }
 #download {
   position: fixed;

@@ -15,11 +15,11 @@
     <script src="./script/echarts.min.js"></script>
 </head>
 <body>
-<div id="home_page" style="display: none">
+<div id="home_page" style="display: block">
     <div class="background">
         <header>
             <div id="navigate"></div>
-            <p>重庆市</p>
+            <p id="location"></p>
         </header>
         <div id="info_box">
             <a href="https://html5.moji.com/tpd/gzbd/index.html">
@@ -34,35 +34,35 @@
             <div id="degree"></div>
             <div id="aqi">
                 <a>
-                    <span><img src="../assets/aqi.png" alt="aqi"></span>
+                    <span class="api_img"><img src="../assets/info_box/aqi.png" alt="aqi"></span>
                     <span class="api"></span>
                 </a>
             </div>
         </div>
     </div>
     <div id="days">
-        <div>
-            <div>
-                <span>今天</span>
-                <span>良</span>
-                <span>6 / 10°</span>
-            </div>
-            <div>
-                <span>阴</span>
-                <img src="../assets/weather/rain.png" alt="weather">
-            </div>
-        </div>
-        <div>
-            <div>
-                <span>明天</span>
-                <span>轻度</span>
-                <span>6 / 10°</span>
-            </div>
-            <div>
-                <span>阴</span>
-                <img src="../assets/weather/rain.png" alt="weather">
-            </div>
-        </div>
+<!--        <div>   &lt;!&ndash;今天&ndash;&gt;-->
+<!--            <div>-->
+<!--                <span>今天</span>-->
+<!--                <span>良</span>-->
+<!--                <span>6 / 10°</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <span>阴</span>-->
+<!--                <img src="../assets/weather/rain.png" alt="weather">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div>   &lt;!&ndash;明天&ndash;&gt;-->
+<!--            <div>-->
+<!--                <span>明天</span>-->
+<!--                <span>轻度</span>-->
+<!--                <span>6 / 10°</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <span>阴</span>-->
+<!--                <img src="../assets/weather/rain.png" alt="weather">-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <div id="temper">
         <div class="tabs1">
@@ -101,7 +101,7 @@
         本页面由<strong>墨迹天气</strong>提供
     </footer>
 </div>
-<div id="search_page" style="display: block">
+<div id="search_page" style="display: none">
     <header>
         <div id="return"></div>
         <p><input type="text" placeholder="请输入城市名"></p>
