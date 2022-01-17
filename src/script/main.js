@@ -154,24 +154,26 @@ setApi();
 // 24小时温度、风力
 export function setHourTemper() {
     // 切换tabs
-    temper.addEventListener("click", () => {
-        temper.setAttribute("class", "active");
-        wind.removeAttribute("class");
-    })
-    wind.addEventListener("click", () => {
-        wind.setAttribute("class", "active");
-        temper.removeAttribute("class");
-    })
-    hourTab1.addEventListener("click", () => {
-        tab1.setAttribute("style", "display:none");
-        tab2.setAttribute("style", "display:block");
-    })
-    hourTab2.addEventListener("click", () => {
-        tab2.setAttribute("style", "display:none");
-        tab1.setAttribute("style", "display:block");
-    })
+    {
+        temper.addEventListener("click", () => {
+            temper.setAttribute("class", "active");
+            wind.removeAttribute("class");
+        })
+        wind.addEventListener("click", () => {
+            wind.setAttribute("class", "active");
+            temper.removeAttribute("class");
+        })
+        hourTab1.addEventListener("click", () => {
+            tab1.setAttribute("style", "display:none");
+            tab2.setAttribute("style", "display:block");
+        })
+        hourTab2.addEventListener("click", () => {
+            tab2.setAttribute("style", "display:none");
+            tab1.setAttribute("style", "display:block");
+        })
+    }
     const myEcharts = echarts.init(temperEcharts, null, {
-        width: 2000,
+        width: 1000,
         height: 110,
     });
     ajax({
@@ -189,15 +191,34 @@ export function setHourTemper() {
                 hourArr.push(item.fxTime.slice(11, 13))
             })
             // console.log(hourArr)
+            tempArr[0] = {
+                value: tempArr[0],
+                label: {
+                    show: true,
+                    color: "#fff"
+                },
+            }
             const options = {
                 xAxis: {
                     type: "category",
                     data: hourArr,
-                    // boundaryGap: false, // 坐标轴留白
+                    axisLine: {
+                        show: false,    // 不显示坐标轴轴线
+                        lineStyle: {
+                            color: "#ffffff",
+                        }
+                    },
+                    axisTick: {
+                        show: false,    // 不显示坐标轴可读线
+                    },
                 },
                 yAxis: {
                     show: false,
                     boundaryGap: false,
+                },
+                grid: {
+                    left: 0,
+                    bottom: "16%",
                 },
                 series: [{
                     type: "line",
@@ -206,15 +227,20 @@ export function setHourTemper() {
                         color: "#fff",
                         width: '1',
                     },
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                color: "#fff"
-                            },
-                            color: "#fff",
-                        }
-                    }
+                    // value: tempArr[0],
+                    // itemStyle: {
+
+                    color: "#fff"
+
+                    // }
+                    // itemStyle: {
+                    //     normal: {
+                    //         label: {
+                    //             show: false,
+                    //         },
+                    //         color: "#fff",
+                    //     }
+                    // }
                 }]
             }
             myEcharts.setOption(options);

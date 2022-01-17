@@ -207,9 +207,12 @@ $border: 1px solid rgba(255,255,255,.1);
     }
   }
   .echarts {
-    width: 100%;
+    width: 1000px;
     height: 110px;
     background: rgba(255,255,255,.1);
+    span {
+
+    }
   }
 }
 #week_weather {
