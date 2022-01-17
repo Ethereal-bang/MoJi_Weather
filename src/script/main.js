@@ -24,6 +24,12 @@ import {
     nowApiImg,
     dayTwo,
     weekApi,
+    temper,
+    wind,
+    hourTab1,
+    hourTab2,
+    tab1,
+    tab2,
 } from './constant.js';
 
 const width = window.innerWidth;
@@ -147,11 +153,27 @@ setApi();
 
 // 24小时温度、风力
 export function setHourTemper() {
+    // 切换tabs
+    temper.addEventListener("click", () => {
+        temper.setAttribute("class", "active");
+        wind.removeAttribute("class");
+    })
+    wind.addEventListener("click", () => {
+        wind.setAttribute("class", "active");
+        temper.removeAttribute("class");
+    })
+    hourTab1.addEventListener("click", () => {
+        tab1.setAttribute("style", "display:none");
+        tab2.setAttribute("style", "display:block");
+    })
+    hourTab2.addEventListener("click", () => {
+        tab2.setAttribute("style", "display:none");
+        tab1.setAttribute("style", "display:block");
+    })
     const myEcharts = echarts.init(temperEcharts, null, {
         width: 2000,
         height: 110,
     });
-
     ajax({
         url: "https://devapi.qweather.com/v7/weather/24h", data: {
             key,
