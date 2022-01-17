@@ -234,11 +234,12 @@ $border: 1px solid rgba(255,255,255,.1);
     }
   }
   .icons {
-    img {
-      width: 100%;
-      display: inline-block;
-      vertical-align: center;
+    li {
+      height: 2.3rem;
       line-height: 2.3rem;
+      img {
+        height: 100%; /*不让图片超出父容器大小*/
+      }
     }
   }
   .week {
