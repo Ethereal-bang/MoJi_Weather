@@ -168,8 +168,7 @@ $border: 1px solid rgba(255,255,255,.1);
     border-right: $border;
   }
 }
-#temper {
-  height: 137px;
+#hour24 {
   position: relative;
   border-width: 1px;
   background: rgba(255,255,255,.1);
@@ -212,7 +211,7 @@ $border: 1px solid rgba(255,255,255,.1);
       background: rgba(255,255,255,.1);
     }
   }
-  em:after {
+  em:after {  // 分割线
     content: "";
     width: 100%;
     height: 1px;
@@ -221,12 +220,17 @@ $border: 1px solid rgba(255,255,255,.1);
     border-top: 1px solid rgba(255, 255, 255, .4);
   }
 }
+.chose_tab1 {
+  height: 27px;
+}
+.chose_tab2 {
+  height: 137px;
+}
 
 #week_weather {
   width: 100%;
   height: 33rem;
   position: relative;
-  margin-top: 110px;  /*给上面曲线留白*/
   color: #ffffff;
   >ul {
     width: 100%;

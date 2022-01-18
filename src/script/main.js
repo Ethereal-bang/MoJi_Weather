@@ -30,11 +30,11 @@ import {
     hourTab2,
     tab1,
     tab2,
+    windEcharts,
+    hourContainer,
 } from './constant.js';
 
 const width = window.innerWidth;
-
-
 
 // 跳转到搜索页:
 {
@@ -158,24 +158,34 @@ export function setHourTemper() {
         temper.addEventListener("click", () => {
             temper.setAttribute("class", "active");
             wind.removeAttribute("class");
+            temperEcharts.setAttribute("style", "display:block");
+            windEcharts.setAttribute("style", "display:none");
         })
         wind.addEventListener("click", () => {
             wind.setAttribute("class", "active");
             temper.removeAttribute("class");
+            temperEcharts.setAttribute("style", "display:none");
+            windEcharts.setAttribute("style", "display:block");
         })
         hourTab1.addEventListener("click", () => {
             tab1.setAttribute("style", "display:none");
             tab2.setAttribute("style", "display:block");
+            hourContainer.setAttribute("class", "chose_tab2");
         })
         hourTab2.addEventListener("click", () => {
             tab2.setAttribute("style", "display:none");
             tab1.setAttribute("style", "display:block");
+            hourContainer.setAttribute("class", "chose_tab1");
         })
     }
-    const myEcharts = echarts.init(temperEcharts, null, {
+    const myTemperEcharts = echarts.init(temperEcharts, null, {
         width: 1000,
         height: 110,
     });
+    const myWindEcharts = echarts.init(windEcharts, null, {
+        width: 1000,
+        height: 110,
+    })
     ajax({
         url: "https://devapi.qweather.com/v7/weather/24h", data: {
             key,
@@ -185,10 +195,12 @@ export function setHourTemper() {
         .then(data => {
             const {hourly} = data;
             // console.log(hourly)
-            const tempArr = [], hourArr = [];
+            const tempArr = [], hourArr = [], windArr = [];
             hourly.map(item => {
+                console.log(item.windSpeed)
                 tempArr.push(item.temp);
                 hourArr.push(item.fxTime.slice(11, 13))
+                windArr.push(item.windSpeed);
             })
             // console.log(hourArr)
             tempArr[0] = {
@@ -198,7 +210,7 @@ export function setHourTemper() {
                     color: "#fff"
                 },
             }
-            const options = {
+            const optionsToTemper = {
                 xAxis: {
                     type: "category",
                     data: hourArr,
@@ -231,7 +243,48 @@ export function setHourTemper() {
                     color: "#fff"
                 }]
             }
-            myEcharts.setOption(options);
+            myTemperEcharts.setOption(optionsToTemper);
+            windArr[0] = {  // 单独配置数据项
+                value: windArr[0],
+                label: {
+                    show: true,
+                    color: "#fff",
+                },
+            }
+            const optionsToWind = {
+                xAxis: {
+                    type: "category",
+                    data: hourArr,
+                    axisLine: {
+                        show: false,    // 不显示坐标轴轴线
+                        lineStyle: {
+                            color: "#ffffff",
+                        }
+                    },
+                    offset: 27, // 调整x轴位置
+                    axisTick: {
+                        show: false,    // 不显示坐标轴可读线
+                    },
+                },
+                yAxis: {
+                    show: false,
+                    boundaryGap: false,
+                },
+                grid: { // 调整曲线位置
+                    left: 0,
+                    bottom: 90,
+                },
+                series: [{
+                    type: "line",
+                    data: windArr,
+                    lineStyle: {
+                        color: "#fff",
+                        width: '1',
+                    },
+                    color: "#fff"
+                }]
+            }
+            myWindEcharts.setOption(optionsToWind);
         })
 }
 
