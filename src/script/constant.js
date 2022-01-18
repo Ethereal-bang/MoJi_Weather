@@ -10,7 +10,6 @@ export const nowWeather = document.getElementsByClassName("weather")[0];
 export const nowDegree = document.getElementById("degree");
 export const nowApiImg = document.getElementsByClassName("api_img")[0];
 export const nowApi = document.getElementsByClassName("api")[0];
-export const temperEcharts = document.getElementsByClassName("echarts")[0];
 // 今明天气
 export const dayTwo = document.getElementById("days");
 // 24小时温度、风力
@@ -20,9 +19,11 @@ export const temper = document.getElementById("tab1");
 export const wind = document.getElementById("tab2");
 export const hourTab1 = document.getElementsByClassName("24hour")[0];
 export const hourTab2 = document.getElementsByClassName("24hour")[1];
+export const temperEcharts = document.getElementsByClassName("echarts")[0];
+export const windEcharts = document.getElementsByClassName("echarts")[1];
 // 一周天气
 export const weekApi = document.getElementsByClassName("api")[1];
-export const weatherEcharts = document.getElementsByClassName("echarts")[1];
+export const weatherEcharts = document.getElementsByClassName("echarts")[2];
 export const week = document.getElementsByClassName("week")[0];
 export const dayWeather = document.getElementsByClassName("weather")[1];  // 一周天气——日间
 export const dayIcons = document.getElementsByClassName("icons")[0];  // 白天天气图标

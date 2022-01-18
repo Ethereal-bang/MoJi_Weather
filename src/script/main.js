@@ -208,6 +208,7 @@ export function setHourTemper() {
                             color: "#ffffff",
                         }
                     },
+                    offset: 27, // 调整x轴位置
                     axisTick: {
                         show: false,    // 不显示坐标轴可读线
                     },
@@ -216,9 +217,9 @@ export function setHourTemper() {
                     show: false,
                     boundaryGap: false,
                 },
-                grid: {
+                grid: { // 调整曲线位置
                     left: 0,
-                    bottom: "16%",
+                    bottom: 90,
                 },
                 series: [{
                     type: "line",
@@ -227,20 +228,7 @@ export function setHourTemper() {
                         color: "#fff",
                         width: '1',
                     },
-                    // value: tempArr[0],
-                    // itemStyle: {
-
                     color: "#fff"
-
-                    // }
-                    // itemStyle: {
-                    //     normal: {
-                    //         label: {
-                    //             show: false,
-                    //         },
-                    //         color: "#fff",
-                    //     }
-                    // }
                 }]
             }
             myEcharts.setOption(options);
