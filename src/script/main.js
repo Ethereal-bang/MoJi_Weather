@@ -34,8 +34,6 @@ import {
     hourContainer,
 } from './constant.js';
 
-const width = window.innerWidth;
-
 // 跳转到搜索页:
 {
     navigate.addEventListener("click", () => {
@@ -306,16 +304,20 @@ export function setWeekWeather() {
         }
     }
     // 一：星期几:
-    const dayNum = (new Date().getDay() === 0) ? 7 : new Date().getDay(); // 获取当天星期几 周日返回7
-    const weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日", "周一", "周二", "周三", "周四", "周五"];
-    let week_innerHTML = "";
-    for (let i = dayNum - 1; i < dayNum - 1 + 7; i++) { // i=dayNum-1是因为第一个显示昨天
-        week_innerHTML += `<li>${weekDay[i]}</li>`
+    {
+        const dayNum = (new Date().getDay() === 0) ? 7 : new Date().getDay(); // 获取当天星期几 周日返回7
+        const weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日", "周一", "周二", "周三", "周四", "周五"];
+        let week_innerHTML = "";
+        for (let i = dayNum - 1; i < dayNum - 1 + 7; i++) { // i=dayNum-1是因为第一个显示昨天
+            week_innerHTML += `<li>${weekDay[i]}</li>`
+        }
+        week.innerHTML = week_innerHTML;
     }
-    week.innerHTML = week_innerHTML;
-
+    window.onresize = () => {
+        // console.log(window.innerWidth)
+    }
     const weekChart = echarts.init(weatherEcharts, null, {
-        width,
+        width: window.innerWidth,
         height: 248,
     });
     ajax({     // 获取数据
@@ -331,7 +333,7 @@ export function setWeekWeather() {
             /**
              * @desc 根据等级返回对应class
              * */
-            function judge(category) {
+            function judgeAqi(category) {
                 if (category === "优") {
                     return "warn_1";
                 } else if (category === "良") {
@@ -347,7 +349,7 @@ export function setWeekWeather() {
                 <div>
                     <div>
                         <span>今天</span>
-                        <span class=${judge(weekAqi[0].category)}>${weekAqi[0].category}</span>
+                        <span class=${judgeAqi(weekAqi[0].category)}>${weekAqi[0].category}</span>
                         <span>${daily[0].tempMin} / ${daily[0].tempMax}°</span>
                     </div>
                     <div>
@@ -358,7 +360,7 @@ export function setWeekWeather() {
                 <div>
                     <div>
                         <span>明天</span>
-                        <span class=${judge(weekAqi[1].category)}>${weekAqi[1].category}</span>
+                        <span class=${judgeAqi(weekAqi[1].category)}>${weekAqi[1].category}</span>
                         <span>${daily[1].tempMin} / ${daily[1].tempMax}°</span>
                     </div>
                     <div>
@@ -402,67 +404,81 @@ export function setWeekWeather() {
                 windScaleInner += `<li>${item.windScale}级</li>`
             })
             // 这样渲染 1.减少多个li的渲染次数 2.当前城市更新后调用函数不会出现多个渲染叠加的效果`+=`
-            dayWeather.innerHTML = dayWeatherInner;
-            dayIcons.innerHTML = dayIconsInner;
-            nightIcons.innerHTML = nightIconsInner;
-            nightWeather.innerHTML = nightWeatherInner;
-            windDir.innerHTML = windDirInner;
-            windScale.innerHTML = windScaleInner;
+            {
+                dayWeather.innerHTML = dayWeatherInner;
+                dayIcons.innerHTML = dayIconsInner;
+                nightIcons.innerHTML = nightIconsInner;
+                nightWeather.innerHTML = nightWeatherInner;
+                windDir.innerHTML = windDirInner;
+                windScale.innerHTML = windScaleInner;
+            }
             // 七：空气质量
             let weekAqiInner = "";
             weekAqi.map(item => {
                 // console.log(item)
                 const { category } = item;
-                weekAqiInner += `<li class = ${judge(category)}>${item.category.slice(0, 2)}</li>`
+                weekAqiInner += `<li class = ${judgeAqi(category)}>${item.category.slice(0, 2)}</li>`
             })
             weekApi.innerHTML = weekAqiInner;
             // 四：温度曲线
             const option = {
-                xAxis: {
-                    type: "category",
-                    show: false,
-                    boundaryGap: false, // 坐标轴留白
-                },
-                yAxis: {
-                    show: false,
-                    boundaryGap: false,
-                },
-                series: [{
-                    type: "line",
-                    smooth: true,
-                    data: tempMaxArr,
-                    lineStyle: {
-                        color: "#fff",
-                        width: '1',
+                baseOption: {
+                    xAxis: {
+                        type: "category",
+                        show: false,
+                        boundaryGap: false, // 坐标轴留白
                     },
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                color: "#fff"
-                            },
+                    yAxis: {
+                        show: false,
+                        boundaryGap: false,
+                    },
+                    series: [{
+                        type: "line",
+                        smooth: true,
+                        data: tempMaxArr,
+                        lineStyle: {
                             color: "#fff",
+                            width: '1',
+                        },
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    color: "#fff"
+                                },
+                                color: "#fff",
+                            }
                         }
-                    }
-                }, {
-                    type: "line",
-                    smooth: true,
-                    data: tempMinArr,
-                    lineStyle: {
-                        color: "#fff",
-                        width: '1',
-                    },
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                position: 'bottom',
+                    }, {
+                        type: "line",
+                        smooth: true,
+                        data: tempMinArr,
+                        lineStyle: {
+                            color: "#fff",
+                            width: '1',
+                        },
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    position: 'bottom',
+                                    color: "#fff",
+                                },
                                 color: "#fff",
                             },
-                            color: "#fff",
+                        }
+                    }],
+                },
+                media: [
+                    {
+                        option: {
+                            grid: {
+                                left: 35,
+                                right: 35,
+                            },
                         },
-                    }
-                }]
+                    },
+                ]
             }
             weekChart.setOption(option);
         })
