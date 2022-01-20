@@ -195,7 +195,7 @@ export function setHourTemper() {
             // console.log(hourly)
             const tempArr = [], hourArr = [], windArr = [];
             hourly.map(item => {
-                console.log(item.windSpeed)
+                // console.log(item.windSpeed)
                 tempArr.push(item.temp);
                 hourArr.push(item.fxTime.slice(11, 13))
                 windArr.push(item.windSpeed);

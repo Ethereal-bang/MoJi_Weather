@@ -78,10 +78,11 @@ const updateCity = (city) => {
     })
         .then(data => {
             localStorage.setItem('locationId', data?.location[0].id);
-            console.log(localStorage.getItem('locationId'))
+            // console.log(localStorage.getItem('locationId'))
         })
     // 回到主页且重新渲染:
     backPage();
+    location.reload();  // 页面重载
     setWeather();
     setCity();
     setApi();
