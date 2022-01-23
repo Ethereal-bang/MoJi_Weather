@@ -22,6 +22,9 @@ export const hourTab2 = document.getElementsByClassName("24hour")[1];
 export const temperEcharts = document.getElementsByClassName("echarts")[0];
 export const windEcharts = document.getElementsByClassName("echarts")[1];
 export const hourContainer = document.getElementById("hour24"); // 父容器
+export const tempNum = document.getElementById("temp_num"); // 下标
+export const windNum = document.getElementById("wind_num");
+export const sunset = document.getElementById("sunset");
 // 一周天气
 export const weekApi = document.getElementsByClassName("api")[1];
 export const weatherEcharts = document.getElementsByClassName("echarts")[2];

@@ -219,6 +219,17 @@ $border: 1px solid rgba(255,255,255,.1);
     bottom: 20px;
     border-top: 1px solid rgba(255, 255, 255, .4);
   }
+  #temp_num, #wind_num {
+    width: 29px;
+    height: 17px;
+    padding: 0;
+    position: absolute;
+    left: 5px;
+    bottom: 24px;
+    line-height: 16px;
+    background: url("../../assets/vernier.png") center no-repeat;
+    background-size: 29px 17px;
+  }
 }
 .chose_tab1 {
   height: 27px;
@@ -268,7 +279,13 @@ $border: 1px solid rgba(255,255,255,.1);
   .echarts {
     position: absolute;
     top: 5rem;
-    width: 100%;
+    width: inherit;
+    div {
+      width: inherit;
+      canvas {
+        width: inherit;
+      }
+    }
   }
   ul:nth-child(0n+5) {  /*夜晚天气图标*/
     bottom: 10.9rem;

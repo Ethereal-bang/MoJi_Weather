@@ -32,6 +32,8 @@ import {
     tab2,
     windEcharts,
     hourContainer,
+    windNum,
+    tempNum, sunset,
 } from './constant.js';
 
 // 跳转到搜索页:
@@ -153,17 +155,24 @@ setApi();
 export function setHourTemper() {
     // 切换tabs
     {
+        // "温度"
         temper.addEventListener("click", () => {
             temper.setAttribute("class", "active");
             wind.removeAttribute("class");
             temperEcharts.setAttribute("style", "display:block");
             windEcharts.setAttribute("style", "display:none");
+            // 下标显示
+            tempNum.setAttribute("style", "display:block");
+            windNum.setAttribute("style", "display:none");
         })
+        // "风力"
         wind.addEventListener("click", () => {
             wind.setAttribute("class", "active");
             temper.removeAttribute("class");
             temperEcharts.setAttribute("style", "display:none");
             windEcharts.setAttribute("style", "display:block");
+            windNum.setAttribute("style", "display:block");
+            tempNum.setAttribute("style", "display:none");
         })
         hourTab1.addEventListener("click", () => {
             tab1.setAttribute("style", "display:none");
@@ -192,7 +201,7 @@ export function setHourTemper() {
     })
         .then(data => {
             const {hourly} = data;
-            // console.log(hourly)
+            console.log(hourly)
             const tempArr = [], hourArr = [], windArr = [];
             hourly.map(item => {
                 // console.log(item.windSpeed)
@@ -200,14 +209,16 @@ export function setHourTemper() {
                 hourArr.push(item.fxTime.slice(11, 13))
                 windArr.push(item.windSpeed);
             })
+            tempNum.innerText = tempArr[0] + "°";
+            windNum.innerText = windArr[0];
             // console.log(hourArr)
-            tempArr[0] = {
+            /*tempArr[0] = {
                 value: tempArr[0],
                 label: {
                     show: true,
                     color: "#fff"
                 },
-            }
+            }*/
             const optionsToTemper = {
                 xAxis: {
                     type: "category",
@@ -242,13 +253,13 @@ export function setHourTemper() {
                 }]
             }
             myTemperEcharts.setOption(optionsToTemper);
-            windArr[0] = {  // 单独配置数据项
+            /*windArr[0] = {  // 单独配置数据项
                 value: windArr[0],
                 label: {
                     show: true,
                     color: "#fff",
                 },
-            }
+            }*/
             const optionsToWind = {
                 xAxis: {
                     type: "category",
@@ -313,13 +324,15 @@ export function setWeekWeather() {
         }
         week.innerHTML = week_innerHTML;
     }
-    window.onresize = () => {
-        // console.log(window.innerWidth)
-    }
+
     const weekChart = echarts.init(weatherEcharts, null, {
-        width: window.innerWidth,
+        // width: auto,
         height: 248,
     });
+    window.onresize = () => {
+        // console.log(window.innerWidth)
+        weekChart.resize()
+    }
     ajax({     // 获取数据
         url: "https://devapi.qweather.com/v7/weather/7d",
         data: {
@@ -330,6 +343,8 @@ export function setWeekWeather() {
         .then(data => {
             const {daily} = data;
             // console.log(daily)
+            // 日落时间
+            sunset.innerText = `日落 ${daily[0].sunset}`
             /**
              * @desc 根据等级返回对应class
              * */
@@ -432,6 +447,13 @@ export function setWeekWeather() {
                         show: false,
                         boundaryGap: false,
                     },
+                    grid: {
+                        left:40,   // x轴方向
+                        top:70,
+                        right: 40,
+                        // x: 0,
+                        // y: 0,
+                    },
                     series: [{
                         type: "line",
                         smooth: true,
@@ -469,16 +491,6 @@ export function setWeekWeather() {
                         }
                     }],
                 },
-                media: [
-                    {
-                        option: {
-                            grid: {
-                                left: 35,
-                                right: 35,
-                            },
-                        },
-                    },
-                ]
             }
             weekChart.setOption(option);
         })
