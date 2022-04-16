@@ -1,0 +1,368 @@
+@charset "UTF-8";
+#home_page {
+  color: #ffffff;
+  background: #0d5aa5;
+}
+#home_page header {
+  height: 3.6rem;
+  line-height: 3.6rem;
+  text-align: center;
+}
+#home_page header #navigate {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0 0.3rem 0 0;
+  display: inline-block;
+  background: center no-repeat url("../../assets/location.png") rgba(0, 0, 0, 0.2);
+  background-size: 0.6rem;
+  border-radius: 1.4rem;
+}
+#home_page header > p {
+  height: 1.8rem;
+  margin: 0 0 0 0.3rem;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+#home_page footer {
+  height: 4.4rem;
+  clear: both;
+  /*清楚上面exponent浮动产生的影响*/
+  margin: 1.6rem 0 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  line-height: 4.4rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+}
+#home_page footer > strong {
+  font-weight: 700;
+  padding: 0 15px;
+}
+
+.background {
+  background: center bottom no-repeat url("../../assets/info_box/background.png"), -webkit-linear-gradient(top, #0c7ec4, #5f92c9);
+  /*背景图片覆盖*/
+  background-size: 100% auto;
+}
+
+#info_box {
+  width: 100%;
+  line-height: 38px;
+  position: relative;
+  /*第一个a标签*/
+  /*第二个a标签*/
+}
+#info_box > a {
+  width: 138px;
+  height: 100%;
+  background-color: #336699;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffffff;
+}
+#info_box > a img {
+  width: 26px;
+  height: 26px;
+  margin: 6px 8px 0 0;
+}
+#info_box > a:first-child {
+  float: left;
+  margin-left: 20px;
+}
+#info_box > a:first-child + a {
+  float: right;
+  margin-right: 20px;
+}
+#info_box .weather {
+  clear: both;
+  font-size: 1.6rem;
+  color: #fff;
+  padding: 5.3rem 0 0 10px;
+}
+#info_box #degree {
+  margin: 20px 140px 0 0;
+  padding: 0 0 0 10px;
+}
+#info_box #degree > span {
+  /*度数*/
+  height: 9rem;
+  font-family: Arial, serif;
+  font-size: 9rem;
+  position: relative;
+  /*用来给后面的°定位*/
+}
+#info_box #degree > span:after {
+  /*度°*/
+  content: "°";
+  font-size: 3rem;
+  line-height: 1;
+  position: absolute;
+  right: -1rem;
+  top: 1.3rem;
+}
+#info_box #degree p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
+#info_box #aqi {
+  position: absolute;
+  /*相对于info_box*/
+  right: 10px;
+  bottom: 10px;
+}
+#info_box #aqi > a {
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 2.1rem;
+  background: rgba(0, 0, 0, 0.1);
+}
+#info_box #aqi > a > span:first-child {
+  /*第一个span*/
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  text-align: center;
+  border-radius: 1.1rem;
+}
+#info_box #aqi > a > span:first-child img {
+  width: 1.4rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+#info_box #aqi > a > span:nth-child(0n+2) {
+  padding: 0 17px 0 4px;
+}
+
+#days {
+  height: 5.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+#days > div {
+  /*左、右栏*/
+  width: 49%;
+  height: 5.6rem;
+  display: inline-block;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+}
+#days > div > div {
+  /*单栏内上下板块*/
+  padding: 0.7rem 10px 0;
+}
+#days > div > div span:nth-child(0n+2) {
+  /*api等级*/
+  width: 3rem;
+  height: 1.6rem;
+  display: inline-block;
+  margin-left: 10px;
+  text-align: center;
+  background-color: #d7af0e;
+  border-radius: 0.7rem;
+}
+#days > div > div span:nth-child(0n+3) {
+  /*温度*/
+  float: right;
+}
+#days > div img {
+  height: 2.2rem;
+  float: right;
+}
+#days div:first-child {
+  /*左栏——今天*/
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#hour24 {
+  position: relative;
+  border-width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+#hour24 .tabs1, #hour24 .tabs2 {
+  height: 2.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#hour24 .tabs1 > span, #hour24 .tabs2 > span {
+  height: 2.4rem;
+  display: inline-block;
+  padding: 0 10px;
+  /*这里用padding不用margin是为了让border占满整个盒子下部*/
+  text-align: center;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+#hour24 .tabs1 > strong, #hour24 .tabs2 > strong {
+  /*24小时*/
+  height: 1.5rem;
+  float: right;
+  margin: 0.5rem 12px 0 0;
+  padding: 0 2rem 0 0;
+  font-weight: normal;
+}
+#hour24 .tabs1 > strong {
+  background: url("../../assets/tabs/arrow.png") right top no-repeat;
+  background-size: 1.5rem auto;
+}
+#hour24 .tabs2 .active {
+  border-bottom: 1px solid #fff;
+}
+#hour24 .tabs2 > strong {
+  /*上箭头*/
+  background: url("../../assets/tabs/arrow.png") right bottom no-repeat;
+  background-size: 1.5rem auto;
+}
+#hour24 .tabs2 .echarts:first-child {
+  width: 1000px;
+  height: 110px;
+  background: rgba(255, 255, 255, 0.1);
+}
+#hour24 em:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+#hour24 #temp_num, #hour24 #wind_num {
+  width: 29px;
+  height: 17px;
+  padding: 0;
+  position: absolute;
+  left: 5px;
+  bottom: 24px;
+  line-height: 16px;
+  background: url("../../assets/vernier.png") center no-repeat;
+  background-size: 29px 17px;
+}
+
+.chose_tab1 {
+  height: 27px;
+}
+
+.chose_tab2 {
+  height: 137px;
+}
+
+#week_weather {
+  width: 100%;
+  height: 33rem;
+  position: relative;
+  color: #ffffff;
+}
+#week_weather > ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  list-style: none;
+  text-align: center;
+}
+#week_weather > ul > li {
+  width: 14.28%;
+  height: 1.4rem;
+  float: left;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+#week_weather .icons li {
+  height: 2.3rem;
+  line-height: 2.3rem;
+}
+#week_weather .icons li img {
+  height: 100%;
+  /*不让图片超出父容器大小*/
+}
+#week_weather .week {
+  top: 1.4rem;
+}
+#week_weather ul:nth-child(0n+2) {
+  /*日间天气*/
+  top: 3.8rem;
+}
+#week_weather ul:nth-child(0n+3) {
+  /*白天天气图标*/
+  top: 6.2rem;
+}
+#week_weather .echarts {
+  position: absolute;
+  top: 5rem;
+  width: inherit;
+}
+#week_weather .echarts div {
+  width: inherit;
+}
+#week_weather .echarts div canvas {
+  width: inherit;
+}
+#week_weather ul:nth-child(0n+5) {
+  /*夜晚天气图标*/
+  bottom: 10.9rem;
+}
+#week_weather ul:nth-child(0n+6) {
+  /*夜间天气*/
+  bottom: 8.6rem;
+}
+#week_weather ul:nth-child(0n+7) {
+  /*空气质量*/
+  bottom: 6.2rem;
+  display: flex;
+  justify-content: space-around;
+}
+#week_weather ul:nth-child(0n+7) li {
+  width: 3rem;
+  border-radius: 0.8rem;
+  line-height: 1.6rem;
+}
+#week_weather ul:nth-child(0n+8) {
+  /*风向*/
+  bottom: 2.8rem;
+}
+#week_weather ul:nth-child(0n+9) {
+  /*风力等级*/
+  bottom: 1.4rem;
+}
+
+#exponent {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-width: 1px 0;
+  align-items: start;
+}
+#exponent > li {
+  width: 33.3%;
+  height: 10rem;
+  max-height: 10rem;
+  display: inline-block;
+  border: solid rgba(255, 255, 255, 0.2);
+  border-width: 0 1px 1px 0;
+  box-sizing: border-box;
+  text-align: center;
+  list-style: none;
+}
+#exponent > li img {
+  height: 3rem;
+  margin: 3rem auto 0;
+  display: block;
+}
+#exponent > li span {
+  height: 3rem;
+  color: #fff;
+  font-size: 1.18rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+/*# sourceMappingURL=home_page.css.map */

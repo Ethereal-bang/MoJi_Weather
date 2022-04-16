@@ -1,0 +1,57 @@
+@charset "UTF-8";
+body, html {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  padding-bottom: 84px;
+}
+
+.showNone {
+  display: none;
+}
+
+.showBlock {
+  display: block;
+}
+
+.warn_1 {
+  /*空气质量等级_优*/
+  background-color: #8fc31f;
+}
+
+.warn_2 {
+  /*良*/
+  background-color: #d7af0e;
+}
+
+.warn_3 {
+  /*轻度污染*/
+  background-color: #f39800;
+}
+
+.warn_4 {
+  /*中度污染*/
+  background-color: #e2361a;
+}
+
+#download {
+  position: fixed;
+  bottom: -0.2rem;
+}
+#download img {
+  width: 100vw;
+  max-width: 640px;
+}
+#download span {
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  right: 4%;
+  top: 30%;
+}
+
+/*# sourceMappingURL=global.css.map */
