@@ -1,4 +1,5 @@
 # 墨迹天气H5页面
+预览地址：https://ethereal-bang.github.io/MoJi_Weather/
 技术栈：原生 JS、Sass、Echarts
 
 ## 搜索页
